@@ -1,0 +1,37 @@
+[
+    {
+        "name": "여가활동",
+        "price": 210000,
+        "ctgColor": "#825183"
+    },
+    {
+        "name": "의료비",
+        "price": 60000,
+        "ctgColor": "#3E7EAC"
+    },
+    {
+        "name": "의류",
+        "price": 120000,
+        "ctgColor": "#7381FF"
+    },
+    {
+        "name": "생활용품",
+        "price": 210000,
+        "ctgColor": "#7BFC88"
+    },
+    {
+        "name": "주거비",
+        "price": 810000,
+        "ctgColor": "#F3EC56"
+    },
+    {
+        "name": "교통비",
+        "price": 600000,
+        "ctgColor": "#FE825B"
+    },
+    {
+        "name": "식비",
+        "price": 1200000,
+        "ctgColor": "#FF7373"
+    }
+]
