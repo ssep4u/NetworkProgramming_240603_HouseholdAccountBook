@@ -5,6 +5,55 @@
     <title>C H A R T</title>
 </head>
 <body>
-    {{ context }}
+    {{ name }}
+    {{ price }}
+    {{ ctgColor }}
+
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // canvas 가져오기
+    const ctx = document.getElementById('myChart')
+
+    // context의 데이터 가져오기
+    const data = {
+        labels: {{ name|safe }},    //python list -> js list로 바꿀 때 문제 해결
+        price: {{ price|safe }},
+        ctgColor: {{ ctgColor|safe }}
+    }
+
+    // 차트에 사용될 데이터 정의하기
+    const chartData = {
+        labels: data.labels,
+        datasets: [{
+            data: data.price,
+            backgroundColor: data.ctgColor
+        }]
+    }
+
+    // 차트 설정하기
+    const config = {
+        type: 'pie',
+        data: chartData,
+        options: {
+            responsive: false,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'chart test'
+                }
+            }
+        }
+    }
+
+    // 차트 생성
+    new Chart(ctx, config)
+</script>
 </body>
 </html>
