@@ -20,3 +20,26 @@
       1. include('chart_test.urls')
    2. data/data.json
       1. 임시 데이터
+5. startapp accountbook
+   1. python manage.py startapp accountbook
+   2. settings.py > INSTALLED_APPS > 'accountbook',
+6. accountbook/
+   1. models
+      1. Category
+         1. name, bgcolor
+      2. AccountBook
+         1. type(0: 지출, 1: 소비), price, category, time, contents, created_at, updated_at
+         2. ~~photo~~
+      3. python manage.py makemigrations accountbook
+      4. python manage.py migrate
+   2. admin
+      1. Category
+      2. AccountBook
+      3. python manage.py createsuperuser
+
+
+
+
+
+
+
