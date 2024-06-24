@@ -1,5 +1,7 @@
 from datetime import timedelta
 
+from django.db.models import Sum
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.datetime_safe import datetime
@@ -53,3 +55,28 @@ def get_daily_accountbook_list(request, year, month, date):
         'daily_accountbook_list': daily_accountbook_list,
     }
     return render(request, 'accountbook/daily_accountbook_list.html', context=context)
+
+
+def get_week_range(date):
+    start_of_week = date - timedelta(days=date.weekday())  # Monday
+    end_of_week = start_of_week + timedelta(days=6)  # Sunday
+    return start_of_week, end_of_week
+
+
+def get_weekly_chart_data(request, year, month, date):
+    given_date = datetime(year, month, date).date()
+    start_of_week, end_of_week = get_week_range(given_date)
+
+    weekly_category_total_price_qs = AccountBook.objects.filter(time__range=(start_of_week, end_of_week)) \
+        .values('category__name', 'category__bgcolor').annotate(total_price=Sum('price')) \
+        .order_by('-total_price')
+
+    weekly_category_total_price_list = list(weekly_category_total_price_qs)  # QuerySet -> list
+
+    context = {
+        'weekly_category_total_price_list': weekly_category_total_price_list,
+        'start_date': start_of_week,
+        'end_date': end_of_week,
+    }
+
+    return JsonResponse(context)
