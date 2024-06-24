@@ -45,6 +45,7 @@
       6. dashboard_accountbook()
       7. get_daily_accountbook_list()
       8. get_weekly_chart_data()
+      9. get_all_chart_data()
    4. templates/accountbook/
       1. category_list.html
       2. accountbook_list.html
@@ -67,6 +68,7 @@
       6. accountbook:accoutbook_dashboard
       7. accountbook:daily_accountbook_list
       8. accountbook:weekly_chart_data
+      9. accountbook:all_chart_data
 
 
 

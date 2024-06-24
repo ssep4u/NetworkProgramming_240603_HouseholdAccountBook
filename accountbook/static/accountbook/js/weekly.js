@@ -32,6 +32,13 @@ const updateWeeklyTable = (data) => {
     weeklyTableDiv.appendChild(table);
 }
 const initChart = () => {
+    //맨 처음에 모든 데이터 가져오자
+    const allURL = `/accountbook/all/`;
+    fetch(allURL)
+        .then((response) => response.json())
+        .then((data) => updateChart(data, true))
+        .catch((error) => console.error(`Error: ${error}`));
+
     // 차트 설정하기
     const config = {
         type: 'pie',

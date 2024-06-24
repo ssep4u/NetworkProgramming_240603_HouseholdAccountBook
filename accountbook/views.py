@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from django.db.models import Sum
+from django.db.models import Sum, Min, Max
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -77,6 +77,26 @@ def get_weekly_chart_data(request, year, month, date):
         'weekly_category_total_price_list': weekly_category_total_price_list,
         'start_date': start_of_week,
         'end_date': end_of_week,
+    }
+
+    return JsonResponse(context)
+
+
+def get_all_chart_data(request):
+    all_category_total_price_qs = AccountBook.objects.all() \
+        .values('category__name', 'category__bgcolor').annotate(total_price=Sum('price')) \
+        .order_by('-total_price')
+    date_range = AccountBook.objects.aggregate(
+        start_date=Min('time'),
+        end_date=Max('time'),
+    )
+
+    all_category_total_price_list = list(all_category_total_price_qs)
+
+    context = {
+        'weekly_category_total_price_list': all_category_total_price_list,
+        'start_date': date_range["start_date"].date(),
+        'end_date': date_range["end_date"].date(),
     }
 
     return JsonResponse(context)
