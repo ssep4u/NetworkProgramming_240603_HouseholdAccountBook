@@ -5,6 +5,7 @@
 {% block css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'accountbook/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'accountbook/css/calendar.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -35,7 +36,7 @@
                 <div id="monthly">
                     <div class="calendar-title container">
                         <button class="btn prev-date" onclick="changeMonth(-1)">&lt;</button>
-                        <h1 class="calendar-current-month">2024년 5월</h1>
+                        <h1 class="calendar-current-month">2024년 6월</h1>
                         <button class="btn next-date" onclick="changeMonth(1)">&gt;</button>
                     </div>
                     <table class="calendar" border="1">
@@ -85,4 +86,18 @@
             </div>
         </main>
     </div>
+
+    <script src="{% static 'accountbook/js/calendar.js' %}"></script>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

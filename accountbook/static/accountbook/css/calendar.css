@@ -1,0 +1,27 @@
+.calendar-title.container {
+    display: flex;
+    width: 360px;
+    padding: 0;
+}
+
+th,
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.calendar > thead > tr > th:first-child,
+.calendar > tbody > tr > td:first-child {
+    color: crimson; /* Sunday */
+}
+
+.calendar > thead > tr > th:last-child,
+.calendar > tbody > tr > td:last-child {
+    color: dodgerblue; /* Satday */
+}
+
+.has-account-book {
+    color: magenta !important;
+    cursor: pointer;
+}
