@@ -16,9 +16,9 @@ class Category(models.Model):
 class AccountBook(models.Model):
     TYPE_CHOICES = [
         (0, '지출'),
-        (1, '소비'),
+        (1, '수입'),
     ]
-    type = models.PositiveSmallIntegerField(choices=TYPE_CHOICES, default=0)  # 0:지출, 1:소비
+    type = models.PositiveSmallIntegerField(choices=TYPE_CHOICES, default=0)  # 0:지출, 1:수입
     price = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)  # models.CASCADE() 에서 () 삭제!!!    1:n관계
     time = models.DateTimeField()

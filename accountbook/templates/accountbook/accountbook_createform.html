@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}AccountBook Add{% endblock %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accountbook/css/createform.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="nav-main">
+        <nav id="nav">
+            <h1>가계부</h1>
+            <div class="nav-item"><a href="{% url 'accountbook:accountbook_dashboard' %}"
+                                     class="nav-link">대시보드</a>
+            </div>
+            <div class="nav-item"><a href="{% url 'accountbook:accountbook_createform' %}" class="nav-link action">지출계획서</a></div>
+        </nav>
+        <main id="create" class="container">
+            <h1>오늘의 소비는 어땠나요?</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group radio-group">
+                    <input type="radio" id="expense" name="type" value="0"
+                           {% if form.type.value == 0 or form.type.value == "0" %}checked{% endif %}>
+                    <label for="expense">지출</label>
+                    <input type="radio" id="income" name="type" value="1"
+                           {% if form.type.value == "1" %}checked{% endif %}>
+                    <label for="income">수입</label>
+                </div>
+                <div class="form-group">
+                    <label for="price">금액</label>
+                    {{ form.price }}
+                </div>
+                <div class="form-group">
+                    <label for="category">분류</label>
+                    {{ form.category }}
+                </div>
+                <div class="form-group">
+                    <label for="time">날짜</label>
+                    {{ form.time }}
+                </div>
+                <div class="form-group">
+                    <label for="contents">내용</label>
+                    {{ form.contents }}
+                </div>
+                <div class="form-group button-container">
+                    <button type="submit" class="btn btn-warning">등록 완료</button>
+                </div>
+            </form>
+        </main>
+    </div>
+{% endblock %}

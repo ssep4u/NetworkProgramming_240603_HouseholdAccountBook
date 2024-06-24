@@ -2,11 +2,12 @@ from datetime import timedelta
 
 from django.db.models import Sum, Min, Max
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.datetime_safe import datetime
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
+from accountbook.forms import AccountBookForm
 from accountbook.models import Category, AccountBook
 
 
@@ -22,7 +23,7 @@ class AccountBookCreateView(CreateView):
     model = AccountBook
     fields = '__all__'
     template_name_suffix = '_create'
-    success_url = reverse_lazy('accountbook:accountbook_list')
+    success_url = reverse_lazy('accountbook:accountbook_dashboard')
 
 
 class AccountBookUpdateView(UpdateView):
@@ -100,3 +101,15 @@ def get_all_chart_data(request):
     }
 
     return JsonResponse(context)
+
+
+def accountbook_createform(request):
+    if request.method == 'POST':
+        form = AccountBookForm(request.POST)
+        if form.is_valid():     #사용자가 입력한 값이 제대로 되었는지 확인하자
+            form.save()         #사용자가 입력한 값으로 DB에 저장하자
+            return redirect('accountbook:accountbook_dashboard')
+    else:
+        form = AccountBookForm()
+
+    return render(request, 'accountbook/accountbook_createform.html', {'form': form})

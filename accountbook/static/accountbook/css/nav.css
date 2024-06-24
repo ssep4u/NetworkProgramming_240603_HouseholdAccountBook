@@ -8,6 +8,7 @@ nav {
     background-color: #616161;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
 nav h1 {
