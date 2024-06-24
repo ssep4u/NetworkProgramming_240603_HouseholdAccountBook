@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chart_test',
     'accountbook',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

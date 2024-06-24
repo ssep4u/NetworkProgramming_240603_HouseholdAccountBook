@@ -1,0 +1,83 @@
+main {
+    width: 80%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+#weekly {
+    display: flex;
+}
+
+.chart-title {
+    width: 360px;
+    margin: 0 auto;
+}
+
+.chart-title div {
+    font-size: 1.4rem;
+}
+
+#weekly-chart {
+    width: 50%;
+    height: 440px;
+}
+
+#myChart {
+    width: 360px;
+    height: 360px;
+    margin: 0 auto;
+}
+
+#weekly-table {
+    width: 50%;
+    height: 440px;
+}
+
+#weekly-table .table {
+    font-size: 1.25rem;
+    border: none;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#weekly-table .table .row {
+    padding: 10px 20px;
+}
+
+#weekly-table .badge {
+    font-size: 1.25rem;
+    color: white;
+    width: 100px;
+}
+
+#weekly-table .col:nth-child(2) {
+    text-align: center;
+}
+
+#weekly-table .col:last-child {
+    text-align: right;
+}
+
+#monthly-daily {
+    display: flex;
+    justify-content: center;
+}
+
+#monthly {
+    width: 50%;
+    height: 400px;
+}
+
+.calendar {
+    width: 360px;
+    height: 360px;
+    margin: 0 auto;
+    border: none;
+}
+
+#daily {
+    width: 50%;
+    height: 400px;
+}

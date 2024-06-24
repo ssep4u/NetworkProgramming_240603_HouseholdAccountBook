@@ -1,0 +1,16 @@
+/* reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 크기의 기준을 border로 설정 */
+}
+ul {
+  list-style: none; /* 리스트 글머리표 삭제 */
+}
+a {
+  text-decoration: none; /* 파란 밑줄 스타일 삭제 */
+}
+img {
+  max-width: 100%;
+  height: auto;
+}

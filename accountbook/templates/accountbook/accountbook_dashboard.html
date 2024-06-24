@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}가계부{% endblock %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accountbook/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let accountbookDates = [];
+    </script>
+    <div id="nav-main">
+        <nav id="nav">
+            <h1>가계부</h1>
+            <div class="nav-item"><a href="{% url 'accountbook:accountbook_dashboard' %}"
+                                     class="nav-link action">대시보드</a>
+            </div>
+            <div class="nav-item"><a href="{% url 'accountbook:accountbook_create' %}" class="nav-link">지출계획서</a></div>
+        </nav>
+        <main id="dashboard">
+            <div id="weekly">
+                <div id="weekly-chart">
+                    <h1 class="chart-title"></h1>
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div id="weekly-table">
+                    <div class="table">
+                    </div>
+                </div>
+            </div>
+            <div id="monthly-daily">
+                <div id="monthly">
+                    <div class="calendar-title container">
+                        <button class="btn prev-date" onclick="changeMonth(-1)">&lt;</button>
+                        <h1 class="calendar-current-month">2024년 5월</h1>
+                        <button class="btn next-date" onclick="changeMonth(1)">&gt;</button>
+                    </div>
+                    <table class="calendar" border="1">
+                        <thead>
+                        <tr>
+                            <th>Su</th>
+                            <th>Mo</th>
+                            <th>Tu</th>
+                            <th>We</th>
+                            <th>Th</th>
+                            <th>Fr</th>
+                            <th>Sa</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div id="daily">
+                    {% load humanize %}
+                    <h1 class="title-date">ALL</h1>
+                    <div class="container">
+                        {% for accountbook in accountbook_list %}
+                            <div class="row-account-book">
+                                <div class="d-flex justify-content-between">
+                                    <div class="daily-date">{{ accountbook.time|date:"Y.m.d" }}</div>
+                                    <div class="daily-category">
+                                    <span class="badge"
+                                          style="background-color: {{ accountbook.category.bgcolor }}">{{ accountbook.category.name }}</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="daily-contents">
+                                        <a href="{% url 'accountbook:accountbook_update' pk=accountbook.id %}">{{ accountbook.contents }}</a>
+                                        <a href="{% url 'accountbook:accountbook_delete' pk=accountbook.id %}">⚒️</a>
+                                    </div>
+                                    <div class="daily-type_price"><span
+                                            class="daily-type">{{ accountbook.get_type_display }} </span><span
+                                            class="daily-price">{{ accountbook.price|intcomma }}</span>원
+                                    </div>
+                                </div>
+                            </div>
+                            <script>accountbookDates.push("{{ accountbook.time|date:'Y.n.j' }}");</script>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
