@@ -43,7 +43,8 @@
       4. AccountBookUpdateView
       5. AccountBookDeleteView
       6. dashboard_accountbook()
-   4. templates
+      7. get_daily_accountbook_list()
+   4. templates/accountbook/
       1. category_list.html
       2. accountbook_list.html
       3. accountbook_create.html
@@ -53,6 +54,8 @@
          1. humanize
          2. reset.css, nav.css, dashboard.css
          3. calendar.js, calendar.css
+         4. daily.css
+      7. daily_accountbook_list.html
    5. urls
       1. accountbook:category_list
       2. accountbook:accoutbook_list
@@ -60,6 +63,7 @@
       4. accountbook:accoutbook_update
       5. accountbook:accoutbook_delete
       6. accountbook:accoutbook_dashboard
+      7. accountbook:daily_accountbook_list
 
 
 

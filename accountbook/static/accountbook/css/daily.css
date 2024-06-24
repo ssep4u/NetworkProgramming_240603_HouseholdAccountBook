@@ -1,0 +1,36 @@
+#daily {
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.title-date {
+    border-bottom: 2px solid #333;
+    width: 90%;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(100px);
+}
+
+#daily > .container {
+    min-width: 400px;
+    width: 90%;
+    padding: 0;
+}
+
+.row-account-book {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.daily-date {
+    color: #aaa;
+}
+
+.daily-contents {
+    font-weight: 600;
+}
+
+.daily-price {
+    color: #FF0909;
+}

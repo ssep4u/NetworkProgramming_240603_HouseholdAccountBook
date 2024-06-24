@@ -1,5 +1,8 @@
+from datetime import timedelta
+
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.datetime_safe import datetime
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from accountbook.models import Category, AccountBook
@@ -33,8 +36,20 @@ class AccountBookDeleteView(DeleteView):
 
 
 def dashboard_accountbook(request):
-    accountbook_list = AccountBook.objects.all()      #all(): 전체, filter(): 필터링, get(): 하나 가져옴, none(): 안 가져옴
+    accountbook_list = AccountBook.objects.all()  # all(): 전체, filter(): 필터링, get(): 하나 가져옴, none(): 안 가져옴
     context = {
         'accountbook_list': accountbook_list,
     }
     return render(request, 'accountbook/accountbook_dashboard.html', context=context)
+
+
+def get_daily_accountbook_list(request, year, month, date):
+    specific_date = datetime(year, month, date).date()
+
+    daily_accountbook_list = AccountBook.objects.filter(time__range=(specific_date, specific_date + timedelta(days=1)))
+
+    context = {
+        'date': f'{year}.{month}.{date}',
+        'daily_accountbook_list': daily_accountbook_list,
+    }
+    return render(request, 'accountbook/daily_accountbook_list.html', context=context)
